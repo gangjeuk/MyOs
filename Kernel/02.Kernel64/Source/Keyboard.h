@@ -77,6 +77,8 @@ typedef struct kKeyMappingEntryStruct
     BYTE bCombinedCode;
 } KEYMAPPINGENTRY;
 
+#define KEY_MAXQUEUECOUNT 100
+
 // 키보드의 상태를 관리하는 자료구조
 typedef struct kKeyboardManagerStruct
 {
@@ -91,6 +93,15 @@ typedef struct kKeyboardManagerStruct
     int iSkipCountForPause;
 } KEYBOARDMANAGER;
 
+typedef struct kKeyDataStruct
+{
+    BYTE bScanCode;
+
+    BYTE bASCIICode;
+
+    BYTE bFlags;
+} KEYDATA;
+
 #pragma pack( pop )
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -99,6 +110,7 @@ typedef struct kKeyboardManagerStruct
 //
 ////////////////////////////////////////////////////////////////////////////////
 BOOL kIsOutputBufferFull( void );
+BOOL kWaitForACKAndPutOtherScanCode( void );
 BOOL kIsInputBufferFull( void );
 BOOL kActivateKeyboard( void );
 BYTE kGetKeyboardScanCode( void );
@@ -112,5 +124,8 @@ BOOL kIsUseCombinedCode( BOOL bScanCode );
 void UpdateCombinationKeyStatusAndLED( BYTE bScanCode );
 BOOL kConvertScanCodeToASCIICode( BYTE bScanCode, BYTE* pbASCIICode, BOOL* pbFlags );
 
+BOOL kInitializeKeyboard( void );
+BOOL kConvertScanCodeAndPutQueue( BYTE bScanCode );
+BOOL kGetKeyFromKeyQueue( KEYDATA* pstData );
 #endif /*__KEYBOARD_H__*/
 

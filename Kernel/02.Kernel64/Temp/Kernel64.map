@@ -2,6 +2,7 @@
 Merging program properties
 
 Removed property 0xc0000002 to merge Main.o (0x3) and EntryPoint.o (not found)
+Removed property 0xc0000002 to merge Main.o (not found) and Queue.o (0x3)
 Removed property 0xc0000002 to merge Main.o (not found) and InterruptHandler.o (0x3)
 Removed property 0xc0000002 to merge Main.o (not found) and Descriptor.o (0x3)
 Removed property 0xc0000002 to merge Main.o (not found) and Utility.o (0x3)
@@ -14,6 +15,10 @@ Discarded input sections
                 0x0000000000000000        0x0 Main.o
  .note.gnu.property
                 0x0000000000000000       0x20 Main.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 Queue.o
+ .note.gnu.property
+                0x0000000000000000       0x20 Queue.o
  .note.GNU-stack
                 0x0000000000000000        0x0 InterruptHandler.o
  .note.gnu.property
@@ -45,142 +50,158 @@ Linker script and memory map
                 [!provide]                        PROVIDE (__executable_start = 0x400000)
                 0x00000000004000e8                . = (0x400000 + SIZEOF_HEADERS)
 
-.text           0x0000000000200000     0x207b
+.text           0x0000000000200000     0x23ab
  *(.text .stub .text.* .gnu.linkonce.t.*)
  .text          0x0000000000200000       0x1f EntryPoint.o
- .text          0x000000000020001f      0x1a7 Main.o
+ .text          0x000000000020001f      0x1ce Main.o
                 0x000000000020001f                kPrintString
                 0x0000000000200046                Main
- .text          0x00000000002001c6       0x4a InterruptHandler.o
-                0x00000000002001c6                kCommonExceptionHandler
-                0x00000000002001cc                kCommonInterruptHandler
-                0x00000000002001ee                kKeyboardHandler
- .text          0x0000000000200210      0xad5 Descriptor.o
-                0x0000000000200210                kSetGDTEntry8
-                0x000000000020023a                kSetGDTEntry16
-                0x0000000000200277                kInitializeTSSSegment
-                0x000000000020029b                kInitializeGDTTableAndTSS
-                0x000000000020030d                kInitializeIDTTables
-                0x0000000000200cb3                kSetIDTEntry
- .text          0x0000000000200ce5       0x4a Utility.o
-                0x0000000000200ce5                kMemSet
-                0x0000000000200cf9                kMemCpy
-                0x0000000000200d11                kMemCmp
- .text          0x0000000000200d2f       0xce PIC.o
-                0x0000000000200d2f                kInitializePIC
-                0x0000000000200dad                kMaskPICInterrupt
-                0x0000000000200dd0                kSendEOIToPIC
- .text          0x0000000000200dfd      0x3eb Keyboard.o
-                0x0000000000200dfd                kIsOutputBufferFull
-                0x0000000000200e11                kIsInputBufferFull
-                0x0000000000200e27                kActivateKeyboard
-                0x0000000000200e91                kGetKeyboardScanCode
-                0x0000000000200eaa                kChangeKeyboardLED
-                0x0000000000200f8b                kEnableA20Gate
-                0x0000000000200ff3                kReboot
-                0x0000000000201027                kIsAlphabetScanCode
-                0x0000000000201042                kIsNumberOrSymbolScanCode
-                0x000000000020105f                kIsNumberPadScanCode
-                0x000000000020106e                kIsUseCombinedCode
-                0x00000000002010d1                UpdateCombinationKeyStatusAndLED
-                0x0000000000201146                kConvertScanCodeToASCIICode
- *fill*         0x00000000002011e8        0x8 90909090
- .text          0x00000000002011f0      0xe52 ISR.o
-                0x00000000002011f0                kISRDivideError
-                0x000000000020124f                kISRDebug
-                0x00000000002012ae                kISRNMI
-                0x000000000020130d                kISRBreakPoint
-                0x000000000020136c                kISROverflow
-                0x00000000002013cb                kISRBoundRangeExceeded
-                0x000000000020142a                kISRInvalidOpcode
-                0x0000000000201489                kISRDeviceNotAvailable
-                0x00000000002014e8                kISRDoubleFault
-                0x000000000020154f                kISRCoprocessorSegmentOverrun
-                0x00000000002015ae                kISRInvalidTSS
-                0x0000000000201615                kISRSegmentNotPresent
-                0x000000000020167c                kISRStackSegmentFault
-                0x00000000002016e3                kISRGeneralProtection
-                0x000000000020174a                kISRPageFault
-                0x00000000002017b1                kISR15
-                0x0000000000201810                kISRFPUError
-                0x000000000020186f                kISRAlignmentCheck
-                0x00000000002018d6                kISRMachineCheck
-                0x0000000000201935                kISRSIMDError
-                0x0000000000201994                kISRETCException
-                0x00000000002019f3                kISRTimer
-                0x0000000000201a52                kISRKeyboard
-                0x0000000000201ab1                kISRSlavePIC
-                0x0000000000201b10                kISRSerial2
-                0x0000000000201b6f                kISRSerial1
-                0x0000000000201bce                kISRParallel2
-                0x0000000000201c2d                kISRFloppy
-                0x0000000000201c8c                kISRParallel1
-                0x0000000000201ceb                kISRRTC
-                0x0000000000201d4a                kISRReserved
-                0x0000000000201da9                kISRNotUsed1
-                0x0000000000201e08                kISRNotUsed2
-                0x0000000000201e67                kISRMouse
-                0x0000000000201ec6                kISRCoprocessor
-                0x0000000000201f25                kISRHDD1
-                0x0000000000201f84                kISRHDD2
-                0x0000000000201fe3                kISRETCInterrupt
- *fill*         0x0000000000202042        0xe 90909090
- .text          0x0000000000202050       0x2b AssemblyUtility.o
-                0x0000000000202050                kInPortByte
-                0x000000000020205c                kOutPortByte
-                0x0000000000202068                kLoadGDTR
-                0x000000000020206c                kLoadTR
-                0x0000000000202070                kLoadIDTR
-                0x0000000000202074                kEnableInterrupt
-                0x0000000000202076                kDisableInterrupt
-                0x0000000000202078                kReadRFLAGS
+ .text          0x00000000002001ed       0xce Queue.o
+                0x00000000002001ed                kInitializeQueue
+                0x0000000000200207                kIsQueueFull
+                0x000000000020021d                kIsQueueEmpty
+                0x0000000000200233                kPutQueue
+                0x0000000000200274                kGetQueue
+ .text          0x00000000002002bb      0x182 InterruptHandler.o
+                0x00000000002002bb                kCommonExceptionHandler
+                0x000000000020034c                kCommonInterruptHandler
+                0x00000000002003d1                kKeyboardHandler
+ .text          0x000000000020043d      0xad5 Descriptor.o
+                0x000000000020043d                kSetGDTEntry8
+                0x0000000000200467                kSetGDTEntry16
+                0x00000000002004a4                kInitializeTSSSegment
+                0x00000000002004c8                kInitializeGDTTableAndTSS
+                0x000000000020053a                kInitializeIDTTables
+                0x0000000000200ee0                kSetIDTEntry
+ .text          0x0000000000200f12       0x7a Utility.o
+                0x0000000000200f12                kMemSet
+                0x0000000000200f26                kMemCpy
+                0x0000000000200f3e                kMemCmp
+                0x0000000000200f5c                kSetInterruptFlag
+ .text          0x0000000000200f8c       0xce PIC.o
+                0x0000000000200f8c                kInitializePIC
+                0x000000000020100a                kMaskPICInterrupt
+                0x000000000020102d                kSendEOIToPIC
+ .text          0x000000000020105a      0x4bb Keyboard.o
+                0x000000000020105a                kIsOutputBufferFull
+                0x000000000020106e                kIsInputBufferFull
+                0x0000000000201084                kGetKeyboardScanCode
+                0x000000000020109d                kEnableA20Gate
+                0x0000000000201105                kReboot
+                0x0000000000201139                kIsAlphabetScanCode
+                0x0000000000201154                kIsNumberOrSymbolScanCode
+                0x0000000000201171                kIsNumberPadScanCode
+                0x0000000000201180                kIsUseCombinedCode
+                0x00000000002011e3                kConvertScanCodeAndPutQueue
+                0x0000000000201244                kWaitForACKAndPutOtherScanCode
+                0x0000000000201286                kActivateKeyboard
+                0x00000000002012e1                kInitializeKeyboard
+                0x0000000000201306                kChangeKeyboardLED
+                0x00000000002013b3                UpdateCombinationKeyStatusAndLED
+                0x0000000000201428                kConvertScanCodeToASCIICode
+                0x00000000002014ca                kGetKeyFromKeyQueue
+ *fill*         0x0000000000201515        0xb 90909090
+ .text          0x0000000000201520      0xe52 ISR.o
+                0x0000000000201520                kISRDivideError
+                0x000000000020157f                kISRDebug
+                0x00000000002015de                kISRNMI
+                0x000000000020163d                kISRBreakPoint
+                0x000000000020169c                kISROverflow
+                0x00000000002016fb                kISRBoundRangeExceeded
+                0x000000000020175a                kISRInvalidOpcode
+                0x00000000002017b9                kISRDeviceNotAvailable
+                0x0000000000201818                kISRDoubleFault
+                0x000000000020187f                kISRCoprocessorSegmentOverrun
+                0x00000000002018de                kISRInvalidTSS
+                0x0000000000201945                kISRSegmentNotPresent
+                0x00000000002019ac                kISRStackSegmentFault
+                0x0000000000201a13                kISRGeneralProtection
+                0x0000000000201a7a                kISRPageFault
+                0x0000000000201ae1                kISR15
+                0x0000000000201b40                kISRFPUError
+                0x0000000000201b9f                kISRAlignmentCheck
+                0x0000000000201c06                kISRMachineCheck
+                0x0000000000201c65                kISRSIMDError
+                0x0000000000201cc4                kISRETCException
+                0x0000000000201d23                kISRTimer
+                0x0000000000201d82                kISRKeyboard
+                0x0000000000201de1                kISRSlavePIC
+                0x0000000000201e40                kISRSerial2
+                0x0000000000201e9f                kISRSerial1
+                0x0000000000201efe                kISRParallel2
+                0x0000000000201f5d                kISRFloppy
+                0x0000000000201fbc                kISRParallel1
+                0x000000000020201b                kISRRTC
+                0x000000000020207a                kISRReserved
+                0x00000000002020d9                kISRNotUsed1
+                0x0000000000202138                kISRNotUsed2
+                0x0000000000202197                kISRMouse
+                0x00000000002021f6                kISRCoprocessor
+                0x0000000000202255                kISRHDD1
+                0x00000000002022b4                kISRHDD2
+                0x0000000000202313                kISRETCInterrupt
+ *fill*         0x0000000000202372        0xe 90909090
+ .text          0x0000000000202380       0x2b AssemblyUtility.o
+                0x0000000000202380                kInPortByte
+                0x000000000020238c                kOutPortByte
+                0x0000000000202398                kLoadGDTR
+                0x000000000020239c                kLoadTR
+                0x00000000002023a0                kLoadIDTR
+                0x00000000002023a4                kEnableInterrupt
+                0x00000000002023a6                kDisableInterrupt
+                0x00000000002023a8                kReadRFLAGS
  *(.gnu.warning)
 
-.iplt           0x000000000020207b        0x0
- .iplt          0x000000000020207b        0x0 EntryPoint.o
+.iplt           0x00000000002023ab        0x0
+ .iplt          0x00000000002023ab        0x0 EntryPoint.o
 
-.rodata         0x0000000000202080      0x1f2
+.rodata         0x00000000002023c0      0x2d2
  *(.rodata .rodata.* .gnu.linkonce.r.*)
  .rodata.str1.1
-                0x0000000000202080      0x127 Main.o
- *fill*         0x00000000002021a7       0x19 
- .rodata        0x00000000002021c0       0xb2 Keyboard.o
+                0x00000000002023c0      0x15a Main.o
+ .rodata.str1.1
+                0x000000000020251a       0xaa InterruptHandler.o
+ *fill*         0x00000000002025c4       0x1c 
+ .rodata        0x00000000002025e0       0xb2 Keyboard.o
 
-.rela.dyn       0x0000000000202278        0x0
- .rela.iplt     0x0000000000202278        0x0 EntryPoint.o
+.rela.dyn       0x0000000000202698        0x0
+ .rela.iplt     0x0000000000202698        0x0 EntryPoint.o
 
 .rodata1
  *(.rodata1)
-                0x0000000000202400                . = ALIGN (0x200)
+                0x0000000000202800                . = ALIGN (0x200)
 
-.data           0x0000000000202400        0x0
+.data           0x0000000000202800        0x0
  *(.data .data.* .gnu.linkonce.d.*)
- .data          0x0000000000202400        0x0 Main.o
- .data          0x0000000000202400        0x0 InterruptHandler.o
- .data          0x0000000000202400        0x0 Descriptor.o
- .data          0x0000000000202400        0x0 Utility.o
- .data          0x0000000000202400        0x0 PIC.o
- .data          0x0000000000202400        0x0 Keyboard.o
+ .data          0x0000000000202800        0x0 Main.o
+ .data          0x0000000000202800        0x0 Queue.o
+ .data          0x0000000000202800        0x0 InterruptHandler.o
+ .data          0x0000000000202800        0x0 Descriptor.o
+ .data          0x0000000000202800        0x0 Utility.o
+ .data          0x0000000000202800        0x0 PIC.o
+ .data          0x0000000000202800        0x0 Keyboard.o
 
-.igot.plt       0x0000000000202400        0x0
- .igot.plt      0x0000000000202400        0x0 EntryPoint.o
+.igot.plt       0x0000000000202800        0x0
+ .igot.plt      0x0000000000202800        0x0 EntryPoint.o
 
 .data1
  *(.data1)
-                0x0000000000202400                __bss_start = .
+                0x0000000000202800                __bss_start = .
 
-.bss            0x0000000000202400       0x18
+.bss            0x0000000000202800      0x180
  *(.dynbss)
  *(.bss .bss.* .gnu.linkonce.b.*)
- .bss           0x0000000000202400        0x0 Main.o
- .bss           0x0000000000202400        0x8 InterruptHandler.o
- .bss           0x0000000000202408        0x0 Descriptor.o
- .bss           0x0000000000202408        0x0 Utility.o
- .bss           0x0000000000202408        0x0 PIC.o
- .bss           0x0000000000202408        0x9 Keyboard.o
+ .bss           0x0000000000202800        0x0 Main.o
+ .bss           0x0000000000202800        0x0 Queue.o
+ .bss           0x0000000000202800        0x8 InterruptHandler.o
+ .bss           0x0000000000202808        0x0 Descriptor.o
+ .bss           0x0000000000202808        0x0 Utility.o
+ .bss           0x0000000000202808        0x0 PIC.o
+ *fill*         0x0000000000202808       0x18 
+ .bss           0x0000000000202820      0x159 Keyboard.o
  *(COMMON)
-                0x0000000000202418                . = ALIGN ((. != 0x0)?0x8:0x1)
- *fill*         0x0000000000202411        0x7 
+                0x0000000000202980                . = ALIGN ((. != 0x0)?0x8:0x1)
+ *fill*         0x0000000000202979        0x7 
 
 .interp
  *(.interp)
@@ -272,9 +293,9 @@ Linker script and memory map
 .rel.got
  *(.rel.got)
 
-.rela.got       0x0000000000202418        0x0
+.rela.got       0x0000000000202980        0x0
  *(.rela.got)
- .rela.got      0x0000000000202418        0x0 EntryPoint.o
+ .rela.got      0x0000000000202980        0x0 EntryPoint.o
 
 .rel.bss
  *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
@@ -321,23 +342,25 @@ Linker script and memory map
 .eh_frame_hdr
  *(.eh_frame_hdr)
 
-.eh_frame       0x0000000000202418      0x318
+.eh_frame       0x0000000000202980      0x474
  *(.eh_frame)
- .eh_frame      0x0000000000202418       0x50 Main.o
- .eh_frame      0x0000000000202468       0x40 InterruptHandler.o
-                                         0x58 (size before relaxing)
- .eh_frame      0x00000000002024a8       0x80 Descriptor.o
+ .eh_frame      0x0000000000202980       0x50 Main.o
+ .eh_frame      0x00000000002029d0       0x78 Queue.o
+                                         0x90 (size before relaxing)
+ .eh_frame      0x0000000000202a48       0x60 InterruptHandler.o
+                                         0x78 (size before relaxing)
+ .eh_frame      0x0000000000202aa8       0x80 Descriptor.o
                                          0x98 (size before relaxing)
- .eh_frame      0x0000000000202528       0x40 Utility.o
-                                         0x58 (size before relaxing)
- .eh_frame      0x0000000000202568       0x58 PIC.o
+ .eh_frame      0x0000000000202b28       0x68 Utility.o
+                                         0x80 (size before relaxing)
+ .eh_frame      0x0000000000202b90       0x58 PIC.o
                                          0x70 (size before relaxing)
- .eh_frame      0x00000000002025c0      0x170 Keyboard.o
-                                        0x188 (size before relaxing)
+ .eh_frame      0x0000000000202be8      0x20c Keyboard.o
+                                        0x228 (size before relaxing)
 
 .gcc_except_table
  *(.gcc_except_table .gcc_except_table.*)
-                0x0000000000202730                . = (ALIGN (CONSTANT (MAXPAGESIZE)) - ((CONSTANT (MAXPAGESIZE) - .) & (CONSTANT (MAXPAGESIZE) - 0x1)))
+                0x0000000000202df4                . = (ALIGN (CONSTANT (MAXPAGESIZE)) - ((CONSTANT (MAXPAGESIZE) - .) & (CONSTANT (MAXPAGESIZE) - 0x1)))
                 0x0000000000203fe8                . = DATA_SEGMENT_ALIGN (CONSTANT (MAXPAGESIZE), CONSTANT (COMMONPAGESIZE))
 
 .eh_frame
@@ -446,6 +469,7 @@ Linker script and memory map
  *(.comment)
  .comment       0x0000000000000000       0x2b Main.o
                                          0x2c (size before relaxing)
+ .comment       0x000000000000002b       0x2c Queue.o
  .comment       0x000000000000002b       0x2c InterruptHandler.o
  .comment       0x000000000000002b       0x2c Descriptor.o
  .comment       0x000000000000002b       0x2c Utility.o
@@ -464,77 +488,85 @@ Linker script and memory map
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x0000000000000000      0x120
+.debug_aranges  0x0000000000000000      0x150
  *(.debug_aranges)
  .debug_aranges
                 0x0000000000000000       0x30 Main.o
  .debug_aranges
-                0x0000000000000030       0x30 InterruptHandler.o
+                0x0000000000000030       0x30 Queue.o
  .debug_aranges
-                0x0000000000000060       0x30 Descriptor.o
+                0x0000000000000060       0x30 InterruptHandler.o
  .debug_aranges
-                0x0000000000000090       0x30 Utility.o
+                0x0000000000000090       0x30 Descriptor.o
  .debug_aranges
-                0x00000000000000c0       0x30 PIC.o
+                0x00000000000000c0       0x30 Utility.o
  .debug_aranges
-                0x00000000000000f0       0x30 Keyboard.o
+                0x00000000000000f0       0x30 PIC.o
+ .debug_aranges
+                0x0000000000000120       0x30 Keyboard.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0x291e
+.debug_info     0x0000000000000000     0x3339
  *(.debug_info .gnu.linkonce.wi.*)
- .debug_info    0x0000000000000000      0x4bd Main.o
- .debug_info    0x00000000000004bd      0x1b3 InterruptHandler.o
- .debug_info    0x0000000000000670     0x166d Descriptor.o
- .debug_info    0x0000000000001cdd      0x17b Utility.o
- .debug_info    0x0000000000001e58      0x228 PIC.o
- .debug_info    0x0000000000002080      0x89e Keyboard.o
+ .debug_info    0x0000000000000000      0x574 Main.o
+ .debug_info    0x0000000000000574      0x26b Queue.o
+ .debug_info    0x00000000000007df      0x34c InterruptHandler.o
+ .debug_info    0x0000000000000b2b     0x166d Descriptor.o
+ .debug_info    0x0000000000002198      0x21c Utility.o
+ .debug_info    0x00000000000023b4      0x228 PIC.o
+ .debug_info    0x00000000000025dc      0xd5d Keyboard.o
 
-.debug_abbrev   0x0000000000000000      0x781
+.debug_abbrev   0x0000000000000000      0x91e
  *(.debug_abbrev)
- .debug_abbrev  0x0000000000000000      0x14d Main.o
- .debug_abbrev  0x000000000000014d       0xcd InterruptHandler.o
- .debug_abbrev  0x000000000000021a      0x1ad Descriptor.o
- .debug_abbrev  0x00000000000003c7       0xc4 Utility.o
- .debug_abbrev  0x000000000000048b       0x94 PIC.o
- .debug_abbrev  0x000000000000051f      0x262 Keyboard.o
+ .debug_abbrev  0x0000000000000000      0x15c Main.o
+ .debug_abbrev  0x000000000000015c      0x118 Queue.o
+ .debug_abbrev  0x0000000000000274       0xed InterruptHandler.o
+ .debug_abbrev  0x0000000000000361      0x1ad Descriptor.o
+ .debug_abbrev  0x000000000000050e       0xe4 Utility.o
+ .debug_abbrev  0x00000000000005f2       0x94 PIC.o
+ .debug_abbrev  0x0000000000000686      0x298 Keyboard.o
 
-.debug_line     0x0000000000000000     0x15aa
+.debug_line     0x0000000000000000     0x1888
  *(.debug_line)
- .debug_line    0x0000000000000000      0x16e Main.o
- .debug_line    0x000000000000016e       0xcd InterruptHandler.o
- .debug_line    0x000000000000023b      0xb6a Descriptor.o
- .debug_line    0x0000000000000da5      0x10e Utility.o
- .debug_line    0x0000000000000eb3       0xbf PIC.o
- .debug_line    0x0000000000000f72      0x638 Keyboard.o
+ .debug_line    0x0000000000000000      0x17d Main.o
+ .debug_line    0x000000000000017d      0x145 Queue.o
+ .debug_line    0x00000000000002c2      0x190 InterruptHandler.o
+ .debug_line    0x0000000000000452      0xb6a Descriptor.o
+ .debug_line    0x0000000000000fbc      0x15f Utility.o
+ .debug_line    0x000000000000111b       0xbf PIC.o
+ .debug_line    0x00000000000011da      0x6ae Keyboard.o
 
 .debug_frame
  *(.debug_frame)
 
-.debug_str      0x0000000000000000      0x80c
+.debug_str      0x0000000000000000      0x9fe
  *(.debug_str)
- .debug_str     0x0000000000000000      0x221 Main.o
-                                        0x23a (size before relaxing)
- .debug_str     0x0000000000000221       0xc1 InterruptHandler.o
-                                        0x1ab (size before relaxing)
- .debug_str     0x00000000000002e2      0x282 Descriptor.o
-                                        0x3e0 (size before relaxing)
- .debug_str     0x0000000000000564       0x47 Utility.o
-                                        0x12d (size before relaxing)
- .debug_str     0x00000000000005ab       0x55 PIC.o
-                                        0x149 (size before relaxing)
- .debug_str     0x0000000000000600      0x20c Keyboard.o
-                                        0x368 (size before relaxing)
+ .debug_str     0x0000000000000000      0x247 Main.o
+                                        0x272 (size before relaxing)
+ .debug_str     0x0000000000000247       0xdd Queue.o
+                                        0x1b2 (size before relaxing)
+ .debug_str     0x0000000000000324      0x106 InterruptHandler.o
+                                        0x205 (size before relaxing)
+ .debug_str     0x000000000000042a      0x282 Descriptor.o
+                                        0x3e2 (size before relaxing)
+ .debug_str     0x00000000000006ac       0x89 Utility.o
+                                        0x19c (size before relaxing)
+ .debug_str     0x0000000000000735       0x34 PIC.o
+                                        0x14b (size before relaxing)
+ .debug_str     0x0000000000000769      0x295 Keyboard.o
+                                        0x4f3 (size before relaxing)
 
-.debug_loc      0x0000000000000000     0x3650
+.debug_loc      0x0000000000000000     0x3812
  *(.debug_loc)
- .debug_loc     0x0000000000000000      0x1c6 Main.o
- .debug_loc     0x00000000000001c6      0x3e4 InterruptHandler.o
- .debug_loc     0x00000000000005aa     0x2396 Descriptor.o
- .debug_loc     0x0000000000002940      0x17d Utility.o
- .debug_loc     0x0000000000002abd       0xbc PIC.o
- .debug_loc     0x0000000000002b79      0xad7 Keyboard.o
+ .debug_loc     0x0000000000000000      0x1b6 Main.o
+ .debug_loc     0x00000000000001b6      0x18d Queue.o
+ .debug_loc     0x0000000000000343      0x16d InterruptHandler.o
+ .debug_loc     0x00000000000004b0     0x2396 Descriptor.o
+ .debug_loc     0x0000000000002846      0x233 Utility.o
+ .debug_loc     0x0000000000002a79       0xbc PIC.o
+ .debug_loc     0x0000000000002b35      0xcdd Keyboard.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -567,6 +599,7 @@ Linker script and memory map
 Address of section .text set to 0x200000
 LOAD EntryPoint.o
 LOAD Main.o
+LOAD Queue.o
 LOAD InterruptHandler.o
 LOAD Descriptor.o
 LOAD Utility.o
