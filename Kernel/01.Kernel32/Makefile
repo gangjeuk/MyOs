@@ -18,13 +18,13 @@ dep:
 	@echo
 	@echo === Make Dependency File ===
 	@echo
-	make -C $(OBJECTDIRECTORY) -f ../makefile InternalDependency
+	make -C $(OBJECTDIRECTORY) -f ../Makefile InternalDependency
 	@echo
 	@echo === Dependency Search Complete ===
 	@echo
 	
 ExecuteInternalBuild: dep
-	make -C $(OBJECTDIRECTORY) -f ../makefile Kernel32.elf
+	make -C $(OBJECTDIRECTORY) -f ../Makefile Kernel32.elf
 
 $(OBJECTDIRECTORY)/Kernel32.elf.bin: ExecuteInternalBuild
 	$(OBJCOPY) $(OBJECTDIRECTORY)/Kernel32.elf $@

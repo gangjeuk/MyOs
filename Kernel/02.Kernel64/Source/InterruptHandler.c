@@ -9,6 +9,7 @@
 #include "InterruptHandler.h"
 #include "PIC.h"
 #include "Keyboard.h"
+#include "Console.h"
 
 /**
  *  공통으로 사용하는 예외 핸들러
@@ -21,11 +22,11 @@ void kCommonExceptionHandler( int iVectorNumber, QWORD qwErrorCode )
     vcBuffer[ 0 ] = '0' + iVectorNumber / 10;
     vcBuffer[ 1 ] = '0' + iVectorNumber % 10;
 
-    kPrintString( 0, 0, "====================================================" );
-    kPrintString( 0, 1, "                 Exception Occur~!!!!               " );
-    kPrintString( 0, 2, "                    Vector:                         " );
-    kPrintString( 27, 2, vcBuffer );
-    kPrintString( 0, 3, "====================================================" );
+    kPrintStringXY( 0, 0, "====================================================" );
+    kPrintStringXY( 0, 1, "                 Exception Occur~!!!!               " );
+    kPrintStringXY( 0, 2, "                    Vector:                         " );
+    kPrintStringXY( 27, 2, vcBuffer );
+    kPrintStringXY( 0, 3, "====================================================" );
 
     while( 1 ) ;
 }
@@ -47,7 +48,7 @@ void kCommonInterruptHandler( int iVectorNumber )
     // 발생한 횟수 출력
     vcBuffer[ 8 ] = '0' + g_iCommonInterruptCount;
     g_iCommonInterruptCount = ( g_iCommonInterruptCount + 1 ) % 10;
-    kPrintString( 70, 0, vcBuffer );
+    kPrintStringXY( 70, 0, vcBuffer );
     //=========================================================================
 
     if( kIsOutputBufferFull() == TRUE )
@@ -76,7 +77,7 @@ void kKeyboardHandler( int iVectorNumber )
     // 발생한 횟수 출력
     vcBuffer[ 8 ] = '0' + g_iKeyboardInterruptCount;
     g_iKeyboardInterruptCount = ( g_iKeyboardInterruptCount + 1 ) % 10;
-    kPrintString( 0, 0, vcBuffer );
+    kPrintStringXY( 0, 0, vcBuffer );
     //=========================================================================
 
     // EOI 전송

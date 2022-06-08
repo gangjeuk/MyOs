@@ -85,7 +85,7 @@ void kSetGDTEntry16( GDTENTRY16* pstEntry, QWORD qwBaseAddress, DWORD dwLimit,
  */
 void kInitializeTSSSegment( TSSSEGMENT* pstTSS )
 {
-    kMemSet( pstTSS, 0, sizeof( TSSSEGMENT ) );
+    kmemset( pstTSS, 0, sizeof( TSSSEGMENT ) );
     pstTSS->qwIST[ 0 ] = IST_STARTADDRESS + IST_SIZE;
     // IO 를 TSS의 limit 값보다 크게 설정함으로써 IO Map을 사용하지 않도록 함
     pstTSS->wIOMapBaseAddress = 0xFFFF;

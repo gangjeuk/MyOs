@@ -84,7 +84,7 @@ READDATA:
     mov al, byte [ SECTORNUMBER ]
     add al, 0x01
     mov byte [SECTORNUMBER], al
-    cmp al, 37
+    cmp al, 50
     jl READDATA
 
     xor byte [HEADNUMBER], 0x01
