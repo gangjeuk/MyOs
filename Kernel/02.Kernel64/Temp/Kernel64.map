@@ -1,0 +1,813 @@
+
+Merging program properties
+
+Removed property 0xc0000002 to merge Main.o (0x3) and EntryPoint.o (not found)
+Removed property 0xc0000002 to merge Main.o (not found) and ConsoleShell.o (0x3)
+Removed property 0xc0000002 to merge Main.o (not found) and PIT.o (0x3)
+Removed property 0xc0000002 to merge Main.o (not found) and Queue.o (0x3)
+Removed property 0xc0000002 to merge Main.o (not found) and List.o (0x3)
+Removed property 0xc0000002 to merge Main.o (not found) and InterruptHandler.o (0x3)
+Removed property 0xc0000002 to merge Main.o (not found) and Descriptor.o (0x3)
+Removed property 0xc0000002 to merge Main.o (not found) and Console.o (0x3)
+Removed property 0xc0000002 to merge Main.o (not found) and Utility.o (0x3)
+Removed property 0xc0000002 to merge Main.o (not found) and PIC.o (0x3)
+Removed property 0xc0000002 to merge Main.o (not found) and Keyboard.o (0x3)
+Removed property 0xc0000002 to merge Main.o (not found) and RTC.o (0x3)
+Removed property 0xc0000002 to merge Main.o (not found) and Task.o (0x3)
+
+Discarded input sections
+
+ .note.GNU-stack
+                0x0000000000000000        0x0 Main.o
+ .note.gnu.property
+                0x0000000000000000       0x20 Main.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 ConsoleShell.o
+ .note.gnu.property
+                0x0000000000000000       0x20 ConsoleShell.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 PIT.o
+ .note.gnu.property
+                0x0000000000000000       0x20 PIT.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 Queue.o
+ .note.gnu.property
+                0x0000000000000000       0x20 Queue.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 List.o
+ .note.gnu.property
+                0x0000000000000000       0x20 List.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 InterruptHandler.o
+ .note.gnu.property
+                0x0000000000000000       0x20 InterruptHandler.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 Descriptor.o
+ .note.gnu.property
+                0x0000000000000000       0x20 Descriptor.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 Console.o
+ .note.gnu.property
+                0x0000000000000000       0x20 Console.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 Utility.o
+ .note.gnu.property
+                0x0000000000000000       0x20 Utility.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 PIC.o
+ .note.gnu.property
+                0x0000000000000000       0x20 PIC.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 Keyboard.o
+ .note.gnu.property
+                0x0000000000000000       0x20 Keyboard.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 RTC.o
+ .note.gnu.property
+                0x0000000000000000       0x20 RTC.o
+ .note.GNU-stack
+                0x0000000000000000        0x0 Task.o
+ .note.gnu.property
+                0x0000000000000000       0x20 Task.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x0000000000000000 0xffffffffffffffff
+
+Linker script and memory map
+
+                [!provide]                        PROVIDE (__executable_start = 0x400000)
+                0x00000000004000e8                . = (0x400000 + SIZEOF_HEADERS)
+
+.text           0x0000000000200000     0x3aa6
+ *(.text .stub .text.* .gnu.linkonce.t.*)
+ .text          0x0000000000200000       0x1f EntryPoint.o
+ .text          0x000000000020001f      0x21b Main.o
+                0x000000000020001f                Main
+ .text          0x000000000020023a      0x815 ConsoleShell.o
+                0x000000000020023a                kHelp
+                0x00000000002002f0                kCls
+                0x0000000000200307                kShowTotalRAMSize
+                0x0000000000200323                kShutdown
+                0x000000000020034f                kReadTimeStampCounter
+                0x000000000020036b                kMeasureProcessorSpeed
+                0x00000000002003fe                kShowDateAndTime
+                0x000000000020047f                kTestTask2
+                0x000000000020048d                kTestTask1
+                0x000000000020054d                kExecuteCommand
+                0x00000000002005eb                kStartConsoleShell
+                0x00000000002006f6                kInitializeParameter
+                0x0000000000200715                kGetNextParameter
+                0x000000000020076e                kStringToDecimalHexTest
+                0x0000000000200813                kSetTimer
+                0x00000000002008be                kWaitUsingPIT
+                0x000000000020099f                kCreateTestTask
+ .text          0x0000000000200a4f       0x99 PIT.o
+                0x0000000000200a4f                kInitializePIT
+                0x0000000000200a9a                kReadCounter0
+                0x0000000000200ac9                kWaitUsingDirectPIT
+ .text          0x0000000000200ae8       0xce Queue.o
+                0x0000000000200ae8                kInitializeQueue
+                0x0000000000200b02                kIsQueueFull
+                0x0000000000200b18                kIsQueueEmpty
+                0x0000000000200b2e                kPutQueue
+                0x0000000000200b6f                kGetQueue
+ .text          0x0000000000200bb6      0x13b List.o
+                0x0000000000200bb6                k_init_list
+                0x0000000000200bd1                k_get_list_count
+                0x0000000000200bd8                k_add_list_to_tail
+                0x0000000000200c07                k_add_list_to_head
+                0x0000000000200c29                k_remove_list
+                0x0000000000200c88                k_remove_list_from_head
+                0x0000000000200c9e                k_remove_list_from_tail
+                0x0000000000200cb7                k_find_list
+                0x0000000000200cd7                k_get_head_from_list
+                0x0000000000200ce0                k_get_tail_from_list
+                0x0000000000200ce9                k_get_next_from_list
+ .text          0x0000000000200cf1      0x21b InterruptHandler.o
+                0x0000000000200cf1                kCommonExceptionHandler
+                0x0000000000200d78                kCommonInterruptHandler
+                0x0000000000200dfb                kKeyboardHandler
+                0x0000000000200e7b                kTimerHandler
+ .text          0x0000000000200f0c      0xad5 Descriptor.o
+                0x0000000000200f0c                kSetGDTEntry8
+                0x0000000000200f36                kSetGDTEntry16
+                0x0000000000200f73                kInitializeTSSSegment
+                0x0000000000200f97                kInitializeGDTTableAndTSS
+                0x0000000000201009                kInitializeIDTTables
+                0x00000000002019af                kSetIDTEntry
+ .text          0x00000000002019e1      0x2ad Console.o
+                0x00000000002019e1                kSetCursor
+                0x0000000000201a2b                kInitializeConsole
+                0x0000000000201a56                kGetCursor
+                0x0000000000201a76                kConsolePrintString
+                0x0000000000201b39                kprintf
+                0x0000000000201c15                kClearScreen
+                0x0000000000201c38                kGetCh
+                0x0000000000201c63                kPrintStringXY
+ .text          0x0000000000201c8e      0x44e Utility.o
+                0x0000000000201c8e                kmemset
+                0x0000000000201ca2                kmemcpy
+                0x0000000000201cba                kmemcmp
+                0x0000000000201cd8                kSetInterruptFlag
+                0x0000000000201d08                kstrlen
+                0x0000000000201d1f                kCheckTotalRAMSize
+                0x0000000000201d25                kGetTotalRAMSize
+                0x0000000000201d2c                kHexStringToQword
+                0x0000000000201d76                kDecimalStringToLong
+                0x0000000000201daf                katoi
+                0x0000000000201dc4                kReverseString
+                0x0000000000201dfa                kHexToString
+                0x0000000000201e45                kDecimalToString
+                0x0000000000201ea2                kitoa
+                0x0000000000201eb2                kvsprintf
+                0x0000000000202049                ksprintf
+ .text          0x00000000002020dc       0xce PIC.o
+                0x00000000002020dc                kInitializePIC
+                0x000000000020215a                kMaskPICInterrupt
+                0x000000000020217d                kSendEOIToPIC
+ .text          0x00000000002021aa      0x4bb Keyboard.o
+                0x00000000002021aa                kIsOutputBufferFull
+                0x00000000002021be                kIsInputBufferFull
+                0x00000000002021d4                kGetKeyboardScanCode
+                0x00000000002021ed                kEnableA20Gate
+                0x0000000000202255                kReboot
+                0x0000000000202289                kIsAlphabetScanCode
+                0x00000000002022a4                kIsNumberOrSymbolScanCode
+                0x00000000002022c1                kIsNumberPadScanCode
+                0x00000000002022d0                kIsUseCombinedCode
+                0x0000000000202333                kConvertScanCodeAndPutQueue
+                0x0000000000202394                kWaitForACKAndPutOtherScanCode
+                0x00000000002023d6                kActivateKeyboard
+                0x0000000000202431                kInitializeKeyboard
+                0x0000000000202456                kChangeKeyboardLED
+                0x0000000000202503                UpdateCombinationKeyStatusAndLED
+                0x0000000000202578                kConvertScanCodeToASCIICode
+                0x000000000020261a                kGetKeyFromKeyQueue
+ .text          0x0000000000202665      0x195 RTC.o
+                0x0000000000202665                kReadRTCTime
+                0x00000000002026fd                kReadRTCDate
+                0x00000000002027ca                kConvertDayOfWeekToString
+ .text          0x00000000002027fa      0x36b Task.o
+                0x00000000002027fa                kInitializeTCBPool
+                0x0000000000202864                kAllocateTCB
+                0x00000000002028d1                kFreeTCB
+                0x0000000000202912                kSetUpTask
+                0x00000000002029b2                kInitializeScheduler
+                0x00000000002029d6                kSetRunningTask
+                0x00000000002029e2                kGetRunningTask
+                0x00000000002029ee                kGetNextTaskToRun
+                0x0000000000202a14                kAddTaskToReadyList
+                0x0000000000202a27                kCreateTask
+                0x0000000000202a70                kSchedule
+                0x0000000000202add                kScheduleInInterrupt
+                0x0000000000202b3f                kDecreaseProcessorTime
+                0x0000000000202b56                kIsProcessorTimeExpired
+ *fill*         0x0000000000202b65        0xb 90909090
+ .text          0x0000000000202b70      0xe52 ISR.o
+                0x0000000000202b70                kISRDivideError
+                0x0000000000202bcf                kISRDebug
+                0x0000000000202c2e                kISRNMI
+                0x0000000000202c8d                kISRBreakPoint
+                0x0000000000202cec                kISROverflow
+                0x0000000000202d4b                kISRBoundRangeExceeded
+                0x0000000000202daa                kISRInvalidOpcode
+                0x0000000000202e09                kISRDeviceNotAvailable
+                0x0000000000202e68                kISRDoubleFault
+                0x0000000000202ecf                kISRCoprocessorSegmentOverrun
+                0x0000000000202f2e                kISRInvalidTSS
+                0x0000000000202f95                kISRSegmentNotPresent
+                0x0000000000202ffc                kISRStackSegmentFault
+                0x0000000000203063                kISRGeneralProtection
+                0x00000000002030ca                kISRPageFault
+                0x0000000000203131                kISR15
+                0x0000000000203190                kISRFPUError
+                0x00000000002031ef                kISRAlignmentCheck
+                0x0000000000203256                kISRMachineCheck
+                0x00000000002032b5                kISRSIMDError
+                0x0000000000203314                kISRETCException
+                0x0000000000203373                kISRTimer
+                0x00000000002033d2                kISRKeyboard
+                0x0000000000203431                kISRSlavePIC
+                0x0000000000203490                kISRSerial2
+                0x00000000002034ef                kISRSerial1
+                0x000000000020354e                kISRParallel2
+                0x00000000002035ad                kISRFloppy
+                0x000000000020360c                kISRParallel1
+                0x000000000020366b                kISRRTC
+                0x00000000002036ca                kISRReserved
+                0x0000000000203729                kISRNotUsed1
+                0x0000000000203788                kISRNotUsed2
+                0x00000000002037e7                kISRMouse
+                0x0000000000203846                kISRCoprocessor
+                0x00000000002038a5                kISRHDD1
+                0x0000000000203904                kISRHDD2
+                0x0000000000203963                kISRETCInterrupt
+ *fill*         0x00000000002039c2        0xe 90909090
+ .text          0x00000000002039d0       0xd6 AssemblyUtility.o
+                0x00000000002039d0                kInPortByte
+                0x00000000002039dc                kOutPortByte
+                0x00000000002039e8                kLoadGDTR
+                0x00000000002039ec                kLoadTR
+                0x00000000002039f0                kLoadIDTR
+                0x00000000002039f4                kEnableInterrupt
+                0x00000000002039f6                kDisableInterrupt
+                0x00000000002039f8                kReadRFLAGS
+                0x00000000002039fb                kReadTSC
+                0x0000000000203a07                kSwitchContext
+ *(.gnu.warning)
+
+.iplt           0x0000000000203aa6        0x0
+ .iplt          0x0000000000203aa6        0x0 EntryPoint.o
+
+.rodata         0x0000000000203ac0      0x7aa
+ *(.rodata .rodata.* .gnu.linkonce.r.*)
+ .rodata.str1.1
+                0x0000000000203ac0      0x20d Main.o
+ .rodata.str1.1
+                0x0000000000203ccd      0x3af ConsoleShell.o
+                                        0x3b5 (size before relaxing)
+ .rodata.str1.1
+                0x000000000020407c       0xaa InterruptHandler.o
+ *fill*         0x0000000000204126        0x2 
+ .rodata        0x0000000000204128       0x44 Utility.o
+ *fill*         0x000000000020416c       0x14 
+ .rodata        0x0000000000204180       0xb2 Keyboard.o
+ .rodata.str1.1
+                0x0000000000204232       0x38 RTC.o
+
+.rela.dyn       0x0000000000204270        0x0
+ .rela.iplt     0x0000000000204270        0x0 EntryPoint.o
+
+.rodata1
+ *(.rodata1)
+                0x0000000000204400                . = ALIGN (0x200)
+
+.data           0x0000000000204400      0x160
+ *(.data .data.* .gnu.linkonce.d.*)
+ .data          0x0000000000204400        0x0 Main.o
+ .data          0x0000000000204400        0x0 ConsoleShell.o
+ .data.rel.ro.local
+                0x0000000000204400      0x108 ConsoleShell.o
+                0x0000000000204400                gs_vstCommandTable
+ .data          0x0000000000204508        0x0 PIT.o
+ .data          0x0000000000204508        0x0 Queue.o
+ .data          0x0000000000204508        0x0 List.o
+ .data          0x0000000000204508        0x0 InterruptHandler.o
+ .data          0x0000000000204508        0x0 Descriptor.o
+ .data          0x0000000000204508        0x0 Console.o
+ .data          0x0000000000204508        0x0 Utility.o
+ .data          0x0000000000204508        0x0 PIC.o
+ .data          0x0000000000204508        0x0 Keyboard.o
+ *fill*         0x0000000000204508       0x18 
+ .data          0x0000000000204520       0x40 RTC.o
+ .data          0x0000000000204560        0x0 Task.o
+
+.igot.plt       0x0000000000204560        0x0
+ .igot.plt      0x0000000000204560        0x0 EntryPoint.o
+
+.data1
+ *(.data1)
+                0x0000000000204560                __bss_start = .
+
+.bss            0x0000000000204560      0x1c0
+ *(.dynbss)
+ *(.bss .bss.* .gnu.linkonce.b.*)
+ .bss           0x0000000000204560        0x0 Main.o
+ .bss           0x0000000000204560        0x0 ConsoleShell.o
+ .bss           0x0000000000204560        0x0 PIT.o
+ .bss           0x0000000000204560        0x0 Queue.o
+ .bss           0x0000000000204560        0x0 List.o
+ .bss           0x0000000000204560       0x14 InterruptHandler.o
+                0x0000000000204560                g_qwTickCount
+ .bss           0x0000000000204574        0x0 Descriptor.o
+ .bss           0x0000000000204574        0x4 Console.o
+                0x0000000000204574                gs_stConsoleManager
+ .bss           0x0000000000204578        0x0 Utility.o
+ .bss           0x0000000000204578        0x0 PIC.o
+ *fill*         0x0000000000204578        0x8 
+ .bss           0x0000000000204580      0x159 Keyboard.o
+ .bss           0x00000000002046d9        0x0 RTC.o
+ *fill*         0x00000000002046d9        0x7 
+ .bss           0x00000000002046e0       0x40 Task.o
+ *(COMMON)
+                0x0000000000204720                . = ALIGN ((. != 0x0)?0x8:0x1)
+
+.interp
+ *(.interp)
+
+.note.gnu.build-id
+ *(.note.gnu.build-id)
+
+.hash
+ *(.hash)
+
+.gnu.hash
+ *(.gnu.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text .rel.text.* .rel.gnu.linkonce.t.*)
+
+.rela.text
+ *(.rela.text .rela.text.* .rela.gnu.linkonce.t.*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata .rel.rodata.* .rel.gnu.linkonce.r.*)
+
+.rela.rodata
+ *(.rela.rodata .rela.rodata.* .rela.gnu.linkonce.r.*)
+
+.rel.data.rel.ro
+ *(.rel.data.rel.ro* .rel.gnu.linkonce.d.rel.ro.*)
+
+.rela.data.rel.ro
+ *(.rela.data.rel.ro* .rela.gnu.linkonce.d.rel.ro.*)
+
+.rel.data
+ *(.rel.data .rel.data.* .rel.gnu.linkonce.d.*)
+
+.rela.data
+ *(.rela.data .rela.data.* .rela.gnu.linkonce.d.*)
+
+.rel.tdata
+ *(.rel.tdata .rel.tdata.* .rel.gnu.linkonce.td.*)
+
+.rela.tdata
+ *(.rela.tdata .rela.tdata.* .rela.gnu.linkonce.td.*)
+
+.rel.tbss
+ *(.rel.tbss .rel.tbss.* .rel.gnu.linkonce.tb.*)
+
+.rela.tbss
+ *(.rela.tbss .rela.tbss.* .rela.gnu.linkonce.tb.*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got       0x0000000000204720        0x0
+ *(.rela.got)
+ .rela.got      0x0000000000204720        0x0 EntryPoint.o
+
+.rel.bss
+ *(.rel.bss .rel.bss.* .rel.gnu.linkonce.b.*)
+
+.rela.bss
+ *(.rela.bss .rela.bss.* .rela.gnu.linkonce.b.*)
+
+.rel.ldata
+ *(.rel.ldata .rel.ldata.* .rel.gnu.linkonce.l.*)
+
+.rela.ldata
+ *(.rela.ldata .rela.ldata.* .rela.gnu.linkonce.l.*)
+
+.rel.lbss
+ *(.rel.lbss .rel.lbss.* .rel.gnu.linkonce.lb.*)
+
+.rela.lbss
+ *(.rela.lbss .rela.lbss.* .rela.gnu.linkonce.lb.*)
+
+.rel.lrodata
+ *(.rel.lrodata .rel.lrodata.* .rel.gnu.linkonce.lr.*)
+
+.rela.lrodata
+ *(.rela.lrodata .rela.lrodata.* .rela.gnu.linkonce.lr.*)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.init
+ *(.init)
+
+.plt
+ *(.plt)
+
+.fini
+ *(.fini)
+                [!provide]                        PROVIDE (__etext = .)
+                [!provide]                        PROVIDE (_etext = .)
+                [!provide]                        PROVIDE (etext = .)
+
+.eh_frame_hdr
+ *(.eh_frame_hdr)
+
+.eh_frame       0x0000000000204720      0xce8
+ *(.eh_frame)
+ .eh_frame      0x0000000000204720       0x38 Main.o
+ .eh_frame      0x0000000000204758      0x2e0 ConsoleShell.o
+                                        0x2f8 (size before relaxing)
+ .eh_frame      0x0000000000204a38       0x60 PIT.o
+                                         0x78 (size before relaxing)
+ .eh_frame      0x0000000000204a98       0x78 Queue.o
+                                         0x90 (size before relaxing)
+ .eh_frame      0x0000000000204b10       0xe0 List.o
+                                         0xf8 (size before relaxing)
+ .eh_frame      0x0000000000204bf0       0x80 InterruptHandler.o
+                                         0x98 (size before relaxing)
+ .eh_frame      0x0000000000204c70       0x80 Descriptor.o
+                                         0x98 (size before relaxing)
+ .eh_frame      0x0000000000204cf0      0x100 Console.o
+                                        0x118 (size before relaxing)
+ .eh_frame      0x0000000000204df0      0x180 Utility.o
+                                        0x198 (size before relaxing)
+ .eh_frame      0x0000000000204f70       0x58 PIC.o
+                                         0x70 (size before relaxing)
+ .eh_frame      0x0000000000204fc8      0x210 Keyboard.o
+                                        0x228 (size before relaxing)
+ .eh_frame      0x00000000002051d8       0x88 RTC.o
+                                         0xa0 (size before relaxing)
+ .eh_frame      0x0000000000205260      0x1a8 Task.o
+                                        0x1c0 (size before relaxing)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+                0x0000000000205408                . = (ALIGN (CONSTANT (MAXPAGESIZE)) - ((CONSTANT (MAXPAGESIZE) - .) & (CONSTANT (MAXPAGESIZE) - 0x1)))
+                0x0000000000206fe8                . = DATA_SEGMENT_ALIGN (CONSTANT (MAXPAGESIZE), CONSTANT (COMMONPAGESIZE))
+
+.eh_frame
+ *(.eh_frame)
+
+.gcc_except_table
+ *(.gcc_except_table .gcc_except_table.*)
+
+.tdata
+ *(.tdata .tdata.* .gnu.linkonce.td.*)
+
+.tbss
+ *(.tbss .tbss.* .gnu.linkonce.tb.*)
+ *(.tcommon)
+
+.preinit_array  0x0000000000206fe8        0x0
+                [!provide]                        PROVIDE (__preinit_array_start = .)
+ *(.preinit_array)
+                [!provide]                        PROVIDE (__preinit_array_end = .)
+
+.init_array     0x0000000000206fe8        0x0
+                [!provide]                        PROVIDE (__init_array_start = .)
+ *(SORT_BY_NAME(.init_array.*))
+ *(.init_array)
+                [!provide]                        PROVIDE (__init_array_end = .)
+
+.fini_array     0x0000000000206fe8        0x0
+                [!provide]                        PROVIDE (__fini_array_start = .)
+ *(.fini_array)
+ *(SORT_BY_NAME(.fini_array.*))
+                [!provide]                        PROVIDE (__fini_array_end = .)
+
+.ctors
+ *crtbegin.o(.ctors)
+ *crtbegin?.o(.ctors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .ctors)
+ *(SORT_BY_NAME(.ctors.*))
+ *(.ctors)
+
+.dtors
+ *crtbegin.o(.dtors)
+ *crtbegin?.o(.dtors)
+ *(EXCLUDE_FILE(*crtend?.o *crtend.o) .dtors)
+ *(SORT_BY_NAME(.dtors.*))
+ *(.dtors)
+
+.jcr
+ *(.jcr)
+
+.data.rel.ro
+ *(.data.rel.ro.local* .gnu.linkonce.d.rel.ro.local.*)
+ *(.data.rel.ro* .gnu.linkonce.d.rel.ro.*)
+
+.dynamic
+ *(.dynamic)
+
+.got            0x0000000000206fe8        0x0
+ *(.got)
+ .got           0x0000000000206fe8        0x0 EntryPoint.o
+                0x0000000000206fe8                . = DATA_SEGMENT_RELRO_END (., 0x18)
+
+.got.plt        0x0000000000206fe8        0x0
+ *(.got.plt)
+ .got.plt       0x0000000000206fe8        0x0 EntryPoint.o
+                0x0000000000206fe8                _edata = .
+                [!provide]                        PROVIDE (edata = .)
+
+.lbss
+ *(.dynlbss)
+ *(.lbss .lbss.* .gnu.linkonce.lb.*)
+ *(LARGE_COMMON)
+                0x0000000000206fe8                . = ALIGN (0x8)
+
+.lrodata
+ *(.lrodata .lrodata.* .gnu.linkonce.lr.*)
+
+.ldata          0x0000000000208fe8        0x0
+ *(.ldata .ldata.* .gnu.linkonce.l.*)
+                0x0000000000208fe8                . = ALIGN ((. != 0x0)?0x8:0x1)
+                0x0000000000208fe8                . = ALIGN (0x8)
+                0x0000000000206fe8                _end = .
+                [!provide]                        PROVIDE (end = .)
+                0x0000000000208fe8                . = DATA_SEGMENT_END (.)
+
+.stab           0x0000000000000000       0x9c
+ *(.stab)
+ .stab          0x0000000000000000       0x9c EntryPoint.o
+
+.stabstr        0x0000000000000000       0x18
+ *(.stabstr)
+ .stabstr       0x0000000000000000       0x18 EntryPoint.o
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment        0x0000000000000000       0x2b
+ *(.comment)
+ .comment       0x0000000000000000       0x2b Main.o
+                                         0x2c (size before relaxing)
+ .comment       0x000000000000002b       0x2c ConsoleShell.o
+ .comment       0x000000000000002b       0x2c PIT.o
+ .comment       0x000000000000002b       0x2c Queue.o
+ .comment       0x000000000000002b       0x2c List.o
+ .comment       0x000000000000002b       0x2c InterruptHandler.o
+ .comment       0x000000000000002b       0x2c Descriptor.o
+ .comment       0x000000000000002b       0x2c Console.o
+ .comment       0x000000000000002b       0x2c Utility.o
+ .comment       0x000000000000002b       0x2c PIC.o
+ .comment       0x000000000000002b       0x2c Keyboard.o
+ .comment       0x000000000000002b       0x2c RTC.o
+ .comment       0x000000000000002b       0x2c Task.o
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x0000000000000000      0x270
+ *(.debug_aranges)
+ .debug_aranges
+                0x0000000000000000       0x30 Main.o
+ .debug_aranges
+                0x0000000000000030       0x30 ConsoleShell.o
+ .debug_aranges
+                0x0000000000000060       0x30 PIT.o
+ .debug_aranges
+                0x0000000000000090       0x30 Queue.o
+ .debug_aranges
+                0x00000000000000c0       0x30 List.o
+ .debug_aranges
+                0x00000000000000f0       0x30 InterruptHandler.o
+ .debug_aranges
+                0x0000000000000120       0x30 Descriptor.o
+ .debug_aranges
+                0x0000000000000150       0x30 Console.o
+ .debug_aranges
+                0x0000000000000180       0x30 Utility.o
+ .debug_aranges
+                0x00000000000001b0       0x30 PIC.o
+ .debug_aranges
+                0x00000000000001e0       0x30 Keyboard.o
+ .debug_aranges
+                0x0000000000000210       0x30 RTC.o
+ .debug_aranges
+                0x0000000000000240       0x30 Task.o
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info     0x0000000000000000     0x6953
+ *(.debug_info .gnu.linkonce.wi.*)
+ .debug_info    0x0000000000000000      0x602 Main.o
+ .debug_info    0x0000000000000602     0x1482 ConsoleShell.o
+ .debug_info    0x0000000000001a84      0x245 PIT.o
+ .debug_info    0x0000000000001cc9      0x279 Queue.o
+ .debug_info    0x0000000000001f42      0x3e1 List.o
+ .debug_info    0x0000000000002323      0x460 InterruptHandler.o
+ .debug_info    0x0000000000002783     0x166d Descriptor.o
+ .debug_info    0x0000000000003df0      0x617 Console.o
+ .debug_info    0x0000000000004407      0xa33 Utility.o
+ .debug_info    0x0000000000004e3a      0x236 PIC.o
+ .debug_info    0x0000000000005070      0xd6b Keyboard.o
+ .debug_info    0x0000000000005ddb      0x32f RTC.o
+ .debug_info    0x000000000000610a      0x849 Task.o
+
+.debug_abbrev   0x0000000000000000     0x14e4
+ *(.debug_abbrev)
+ .debug_abbrev  0x0000000000000000       0xfc Main.o
+ .debug_abbrev  0x00000000000000fc      0x2eb ConsoleShell.o
+ .debug_abbrev  0x00000000000003e7       0xeb PIT.o
+ .debug_abbrev  0x00000000000004d2      0x118 Queue.o
+ .debug_abbrev  0x00000000000005ea      0x12a List.o
+ .debug_abbrev  0x0000000000000714       0xfc InterruptHandler.o
+ .debug_abbrev  0x0000000000000810      0x1ad Descriptor.o
+ .debug_abbrev  0x00000000000009bd      0x1ea Console.o
+ .debug_abbrev  0x0000000000000ba7      0x36a Utility.o
+ .debug_abbrev  0x0000000000000f11       0x94 PIC.o
+ .debug_abbrev  0x0000000000000fa5      0x298 Keyboard.o
+ .debug_abbrev  0x000000000000123d       0xef RTC.o
+ .debug_abbrev  0x000000000000132c      0x1b8 Task.o
+
+.debug_line     0x0000000000000000     0x3119
+ *(.debug_line)
+ .debug_line    0x0000000000000000      0x140 Main.o
+ .debug_line    0x0000000000000140      0x7f5 ConsoleShell.o
+ .debug_line    0x0000000000000935       0xef PIT.o
+ .debug_line    0x0000000000000a24      0x145 Queue.o
+ .debug_line    0x0000000000000b69      0x255 List.o
+ .debug_line    0x0000000000000dbe      0x23d InterruptHandler.o
+ .debug_line    0x0000000000000ffb      0xb6a Descriptor.o
+ .debug_line    0x0000000000001b65      0x350 Console.o
+ .debug_line    0x0000000000001eb5      0x61e Utility.o
+ .debug_line    0x00000000000024d3       0xbf PIC.o
+ .debug_line    0x0000000000002592      0x6ae Keyboard.o
+ .debug_line    0x0000000000002c40      0x16e RTC.o
+ .debug_line    0x0000000000002dae      0x36b Task.o
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str      0x0000000000000000     0x14b1
+ *(.debug_str)
+ .debug_str     0x0000000000000000      0x252 Main.o
+                                        0x27d (size before relaxing)
+ .debug_str     0x0000000000000252      0x4c2 ConsoleShell.o
+                                        0x65d (size before relaxing)
+ .debug_str     0x0000000000000714       0x76 PIT.o
+                                        0x199 (size before relaxing)
+ .debug_str     0x000000000000078a       0xd5 Queue.o
+                                        0x1c8 (size before relaxing)
+ .debug_str     0x000000000000085f      0x105 List.o
+                                        0x226 (size before relaxing)
+ .debug_str     0x0000000000000964      0x17d InterruptHandler.o
+                                        0x295 (size before relaxing)
+ .debug_str     0x0000000000000ae1      0x27a Descriptor.o
+                                        0x3d9 (size before relaxing)
+ .debug_str     0x0000000000000d5b      0x13e Console.o
+                                        0x339 (size before relaxing)
+ .debug_str     0x0000000000000e99      0x176 Utility.o
+                                        0x362 (size before relaxing)
+ .debug_str     0x000000000000100f       0x27 PIC.o
+                                        0x159 (size before relaxing)
+ .debug_str     0x0000000000001036      0x281 Keyboard.o
+                                        0x4fc (size before relaxing)
+ .debug_str     0x00000000000012b7       0x64 RTC.o
+                                        0x1b8 (size before relaxing)
+ .debug_str     0x000000000000131b      0x196 Task.o
+                                        0x444 (size before relaxing)
+
+.debug_loc      0x0000000000000000     0x620a
+ *(.debug_loc)
+ .debug_loc     0x0000000000000000      0xd6d ConsoleShell.o
+ .debug_loc     0x0000000000000d6d      0x19d PIT.o
+ .debug_loc     0x0000000000000f0a      0x18d Queue.o
+ .debug_loc     0x0000000000001097      0x22b List.o
+ .debug_loc     0x00000000000012c2      0x1f9 InterruptHandler.o
+ .debug_loc     0x00000000000014bb     0x2396 Descriptor.o
+ .debug_loc     0x0000000000003851      0x4e3 Console.o
+ .debug_loc     0x0000000000003d34      0xde6 Utility.o
+ .debug_loc     0x0000000000004b1a       0xbc PIC.o
+ .debug_loc     0x0000000000004bd6      0xcdd Keyboard.o
+ .debug_loc     0x00000000000058b3      0x3c1 RTC.o
+ .debug_loc     0x0000000000005c74      0x596 Task.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+
+.debug_weaknames
+ *(.debug_weaknames)
+
+.debug_funcnames
+ *(.debug_funcnames)
+
+.debug_typenames
+ *(.debug_typenames)
+
+.debug_varnames
+ *(.debug_varnames)
+
+.debug_pubtypes
+ *(.debug_pubtypes)
+
+.debug_ranges   0x0000000000000000      0xda0
+ *(.debug_ranges)
+ .debug_ranges  0x0000000000000000      0xd10 Descriptor.o
+ .debug_ranges  0x0000000000000d10       0x90 Utility.o
+
+.gnu.attributes
+ *(.gnu.attributes)
+
+/DISCARD/
+ *(.note.GNU-stack)
+ *(.gnu_debuglink)
+Address of section .text set to 0x200000
+LOAD EntryPoint.o
+LOAD Main.o
+LOAD ConsoleShell.o
+LOAD PIT.o
+LOAD Queue.o
+LOAD List.o
+LOAD InterruptHandler.o
+LOAD Descriptor.o
+LOAD Console.o
+LOAD Utility.o
+LOAD PIC.o
+LOAD Keyboard.o
+LOAD RTC.o
+LOAD Task.o
+LOAD ISR.o
+LOAD AssemblyUtility.o
+OUTPUT(Kernel64.elf elf64-x86-64)

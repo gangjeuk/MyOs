@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "assemblyutility.h": "c",
+        "queue.h": "c",
+        "types.h": "c"
+    }
+}
